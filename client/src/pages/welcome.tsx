@@ -4,7 +4,7 @@ import { useLocation } from "wouter";
 import { useWelcomeAudio } from "../hooks/useWelcomeAudio";
 import { MediaPreloader } from "../components/media-preloader";
 import { useState, useEffect, useCallback } from "react";
-import logoImage from "@assets/Untitled_design_(19)_1765720357505.png";
+import logoImage from "@assets/Untitled_design_(20)_1765720426678.png";
 
 export default function Welcome() {
   const [, setLocation] = useLocation();
