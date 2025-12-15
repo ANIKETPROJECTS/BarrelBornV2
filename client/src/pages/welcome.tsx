@@ -31,8 +31,8 @@ export default function Welcome() {
     >
       <MediaPreloader onComplete={() => setMediaReady(true)} />
 
-      {/* Main content container - compact spacing */}
-      <div className="flex flex-col items-center w-full px-4 py-2">
+      {/* Main content container - compact spacing, minimal top padding */}
+      <div className="flex flex-col items-center w-full px-4 pt-0 pb-2">
 
         {/* Logo Image - big and at top */}
         <div className="flex flex-col items-center w-full">
