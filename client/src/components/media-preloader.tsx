@@ -11,9 +11,7 @@ export function MediaPreloader({ onComplete }: MediaPreloaderProps) {
     // Simplified preloader - just check if video element can load
     const preloadVideo = async () => {
       const videoSources = [
-        '/vedio/Black Elegant Wedding Menu.mp4',
-        './vedio/Black Elegant Wedding Menu.mp4',
-        '/assets/vedio/Black Elegant Wedding Menu.mp4'
+        '/vedio/Black Elegant Wedding Menu.mp4'
       ];
 
       let videoLoaded = false;
