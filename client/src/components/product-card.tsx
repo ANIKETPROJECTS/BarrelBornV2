@@ -12,8 +12,8 @@ export default function ProductCard({ item }: ProductCardProps) {
   const imageUrl = imgError || !item.image || item.image.includes("example.com") ? dummyProductImg : item.image;
 
   return (
-    <div className="flex flex-col bg-gray-900/50 overflow-hidden" style={{ borderRadius: 0 }}>
-      <div className="relative w-full aspect-square overflow-hidden">
+    <div className="flex flex-col overflow-hidden" style={{ borderRadius: 0 }}>
+      <div className="relative w-full aspect-[3/4] overflow-hidden">
         <img
           src={imageUrl}
           alt={item.name}
@@ -28,7 +28,7 @@ export default function ProductCard({ item }: ProductCardProps) {
         />
       </div>
 
-      <div className="p-3">
+      <div className="pt-3">
         <h3
           className="text-base sm:text-lg font-semibold leading-tight mb-1"
           style={{ 
@@ -42,7 +42,7 @@ export default function ProductCard({ item }: ProductCardProps) {
         <p
           className="text-xs sm:text-sm leading-relaxed mb-2 line-clamp-2"
           style={{ 
-            color: '#9CA3AF',
+            color: '#FFFFFF',
             fontFamily: "'Lato', sans-serif"
           }}
         >
@@ -51,8 +51,9 @@ export default function ProductCard({ item }: ProductCardProps) {
         <span
           className="text-sm sm:text-base font-bold"
           style={{ 
-            color: '#C9A55C',
-            fontFamily: "'Cormorant Garamond', serif"
+            color: '#FFFFFF',
+            fontFamily: "'Lato', sans-serif",
+            letterSpacing: "0.5px"
           }}
         >
           ₹{item.price}
