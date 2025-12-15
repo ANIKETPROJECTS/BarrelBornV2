@@ -12,9 +12,10 @@ import restaurantInterior3 from "@assets/stock_images/elegant_restaurant_i_46bc3
 import gourmetFood1 from "@assets/stock_images/gourmet_food_plating_4fa14995.jpg";
 import gourmetFood2 from "@assets/stock_images/gourmet_food_plating_6ae9981b.jpg";
 
-import nibblesImg from "@assets/generated_images/nibbles_snacks_appetizer.png";
-import blendedWhiskyImg from "@assets/generated_images/blended_whisky_bottle.png";
-import signatureMocktailsImg from "@assets/generated_images/signature_mocktails_drinks.png";
+import premiumFoodImg from "@assets/stock_images/premium_gourmet_food_a20f6103.jpg";
+import premiumBarImg from "@assets/stock_images/premium_whisky_cockt_68b3295e.jpg";
+import premiumDessertsImg from "@assets/stock_images/premium_chocolate_de_58e8f157.jpg";
+import premiumMocktailsImg from "@assets/stock_images/premium_colorful_moc_1a15dee9.jpg";
 
 const promotionalImages = [
   { id: 1, src: restaurantInterior1, alt: "Elegant Restaurant Interior" },
@@ -25,10 +26,10 @@ const promotionalImages = [
 ];
 
 const categoryImages: Record<string, string> = {
-  food: nibblesImg,
-  bar: blendedWhiskyImg,
-  desserts: gourmetFood2,
-  mocktails: signatureMocktailsImg,
+  food: premiumFoodImg,
+  bar: premiumBarImg,
+  desserts: premiumDessertsImg,
+  mocktails: premiumMocktailsImg,
 };
 
 export default function MenuLanding() {
@@ -48,8 +49,8 @@ export default function MenuLanding() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--elegant-cream)" }}>
-      <header className="sticky top-0 z-30 bg-white elegant-shadow">
+    <div className="min-h-screen" style={{ backgroundColor: "#151515" }}>
+      <header className="sticky top-0 z-30 elegant-shadow" style={{ backgroundColor: "#151515" }}>
         <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
@@ -58,7 +59,7 @@ export default function MenuLanding() {
                 size="icon"
                 onClick={() => setLocation("/")}
                 className="hover:bg-transparent flex-shrink-0"
-                style={{ color: "var(--elegant-gold)" }}
+                style={{ color: "#DCD4C8" }}
                 data-testid="button-back"
               >
                 <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -70,12 +71,12 @@ export default function MenuLanding() {
                 className="font-bold"
                 style={{
                   fontSize: "clamp(18px, 4vw, 28px)",
-                  color: "#D97706",
+                  color: "#DCD4C8",
                   fontFamily: "'Playfair Display', serif",
                   letterSpacing: "1px",
                 }}
               >
-                BARREL BORN
+                BARRELBORN
               </h1>
             </div>
 
@@ -85,7 +86,7 @@ export default function MenuLanding() {
                 size="icon"
                 onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}
                 className="hover:bg-transparent"
-                style={{ color: "var(--elegant-gold)" }}
+                style={{ color: "#DCD4C8" }}
                 data-testid="button-menu-toggle"
               >
                 {showHamburgerMenu ? (
@@ -247,15 +248,6 @@ export default function MenuLanding() {
           </div>
         </div>
 
-        <div className="mb-4">
-          <h2
-            className="text-xl sm:text-2xl font-bold text-center mb-6"
-            style={{ color: "var(--elegant-gold)", fontFamily: "'Playfair Display', serif" }}
-          >
-            Explore Our Menu
-          </h2>
-        </div>
-
         <div className="grid grid-cols-2 gap-4">
           {mainCategories.map((category, index) => (
             <motion.button
@@ -266,7 +258,8 @@ export default function MenuLanding() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => handleCategoryClick(category.id)}
-              className="relative aspect-square rounded-xl overflow-hidden group"
+              className="relative rounded-xl overflow-hidden group"
+              style={{ aspectRatio: "1/1.3" }}
               data-testid={`tile-${category.id}`}
             >
               <img
@@ -274,15 +267,14 @@ export default function MenuLanding() {
                 alt={category.displayLabel}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+              <div className="absolute inset-0 flex flex-col items-center justify-end text-white p-4 pb-6">
                 <h3
                   className="text-xl sm:text-2xl font-bold tracking-wide"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  style={{ fontFamily: "'Playfair Display', serif", color: "#DCD4C8", textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
                 >
                   {category.displayLabel}
                 </h3>
-                <p className="text-xs sm:text-sm opacity-80 text-center mt-1">
+                <p className="text-xs sm:text-sm text-center mt-1" style={{ color: "#DCD4C8", opacity: 0.9, textShadow: "0 1px 2px rgba(0,0,0,0.5)" }}>
                   {category.description}
                 </p>
               </div>
