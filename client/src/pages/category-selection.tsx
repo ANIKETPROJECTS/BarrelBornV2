@@ -10,9 +10,50 @@ import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
 import signatureMocktailsImg from "@assets/generated_images/signature_mocktails_drinks.png";
 import softBeveragesImg from "@assets/generated_images/soft_beverages_drinks.png";
 
+import nibblesImg from "@assets/image_1765861653339.png";
+import titbitsImg from "@assets/image_1765861734899.png";
+import soupsImg from "@assets/image_1765861784186.png";
+import saladsImg from "@assets/image_1765861993529.png";
+import startersImg from "@assets/image_1765862083770.png";
+import charcoalImg from "@assets/image_1765862103291.png";
+import pastaImg from "@assets/image_1765862151515.png";
+import pizzaImg from "@assets/image_1765862533698.png";
+import slidersImg from "@assets/image_1765862611064.png";
+import entreeImg from "@assets/image_1765862689473.png";
+import baoDimsumImg from "@assets/image_1765862739110.png";
+import curriesImg from "@assets/image_1765862783811.png";
+import biryaniImg from "@assets/image_1765862804295.png";
+import riceImg from "@assets/image_1765862832303.png";
+import dalsImg from "@assets/image_1765862864030.png";
+import breadsImg from "@assets/image_1765862911256.png";
+import asianMainsImg from "@assets/image_1765862935848.png";
+import thaiBowlsImg from "@assets/image_1765862959084.png";
+import riceNoodlesImg from "@assets/image_1765862986138.png";
+import sizzlersImg from "@assets/image_1765863042831.png";
+
 const subcategoryImages: Record<string, string> = {
   "signature-mocktails": signatureMocktailsImg,
   "soft-beverages": softBeveragesImg,
+  nibbles: nibblesImg,
+  titbits: titbitsImg,
+  soups: soupsImg,
+  salads: saladsImg,
+  starters: startersImg,
+  charcoal: charcoalImg,
+  pasta: pastaImg,
+  pizza: pizzaImg,
+  sliders: slidersImg,
+  entree: entreeImg,
+  "bao-dimsum": baoDimsumImg,
+  curries: curriesImg,
+  biryani: biryaniImg,
+  rice: riceImg,
+  dals: dalsImg,
+  breads: breadsImg,
+  "asian-mains": asianMainsImg,
+  "thai-bowls": thaiBowlsImg,
+  "rice-noodles": riceNoodlesImg,
+  sizzlers: sizzlersImg,
 };
 
 export default function CategorySelection() {
