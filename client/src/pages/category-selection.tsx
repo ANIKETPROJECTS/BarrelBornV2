@@ -10,6 +10,23 @@ import logoImg from "@assets/Untitled_design_(20)_1765720426678.png";
 import signatureMocktailsImg from "@assets/generated_images/signature_mocktails_drinks.png";
 import softBeveragesImg from "@assets/generated_images/soft_beverages_drinks.png";
 
+import blendedWhiskyImg from "@assets/image_1765863859085.png";
+import blendedScotchWhiskyImg from "@assets/image_1765863885349.png";
+import americanIrishWhiskeyImg from "@assets/image_1765863999733.png";
+import singleMaltWhiskyImg from "@assets/image_1765864037279.png";
+import vodkaImg from "@assets/image_1765864071875.png";
+import ginImg from "@assets/image_1765864086244.png";
+import rumImg from "@assets/image_1765864174592.png";
+import tequilaImg from "@assets/image_1765864191436.png";
+import cognacBrandyImg from "@assets/image_1765864219488.png";
+import liqueursImg from "@assets/image_1765864273630.png";
+import sparklingWineImg from "@assets/image_1765864313974.png";
+import whiteWinesImg from "@assets/image_1765864338087.png";
+import roseWinesImg from "@assets/image_1765864363438.png";
+import redWinesImg from "@assets/image_1765864393053.png";
+import dessertWinesImg from "@assets/image_1765864417149.png";
+import portWineImg from "@assets/image_1765864441224.png";
+
 import nibblesImg from "@assets/image_1765861653339.png";
 import titbitsImg from "@assets/image_1765861734899.png";
 import soupsImg from "@assets/image_1765861784186.png";
@@ -34,6 +51,22 @@ import sizzlersImg from "@assets/image_1765863042831.png";
 const subcategoryImages: Record<string, string> = {
   "signature-mocktails": signatureMocktailsImg,
   "soft-beverages": softBeveragesImg,
+  "blended-whisky": blendedWhiskyImg,
+  "blended-scotch-whisky": blendedScotchWhiskyImg,
+  "american-irish-whiskey": americanIrishWhiskeyImg,
+  "single-malt-whisky": singleMaltWhiskyImg,
+  vodka: vodkaImg,
+  gin: ginImg,
+  rum: rumImg,
+  tequila: tequilaImg,
+  "cognac-brandy": cognacBrandyImg,
+  liqueurs: liqueursImg,
+  "sparkling-wine": sparklingWineImg,
+  "white-wines": whiteWinesImg,
+  "rose-wines": roseWinesImg,
+  "red-wines": redWinesImg,
+  "dessert-wines": dessertWinesImg,
+  "port-wine": portWineImg,
   nibbles: nibblesImg,
   titbits: titbitsImg,
   soups: soupsImg,
