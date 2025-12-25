@@ -134,6 +134,7 @@ export default function CategoryDetail() {
   const [isListening, setIsListening] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
+  const [vegFilter, setVegFilter] = useState<"all" | "veg" | "non-veg">("all");
   
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -171,6 +172,10 @@ export default function CategoryDetail() {
 
   const filteredItems = useMemo(() => {
     return menuItems.filter((item) => {
+      // Apply veg filter first
+      if (vegFilter === "veg" && !item.isVeg) return false;
+      if (vegFilter === "non-veg" && item.isVeg) return false;
+
       if (searchQuery.trim()) {
         const matchesSearch = 
           item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -182,7 +187,7 @@ export default function CategoryDetail() {
       const activeSubcat = subcategories.find(s => s.id === activeSubcategory);
       return item.category === activeSubcat?.dbCategory;
     });
-  }, [menuItems, activeSubcategory, searchQuery, subcategories, validSubcategoryIds]);
+  }, [menuItems, activeSubcategory, searchQuery, subcategories, validSubcategoryIds, vegFilter]);
 
   const startVoiceSearch = () => {
     if (speechRecognition && voiceSearchSupported) {
@@ -272,6 +277,38 @@ export default function CategoryDetail() {
             </Button>
           )}
         </div>
+
+        {categoryId === "food" && (
+          <div className="mb-4 flex gap-2">
+            <Button
+              onClick={() => setVegFilter("all")}
+              variant={vegFilter === "all" ? "default" : "outline"}
+              className="flex-1 text-sm"
+              data-testid="filter-all"
+              style={vegFilter === "all" ? { backgroundColor: "var(--elegant-gold)", color: "white" } : {}}
+            >
+              All
+            </Button>
+            <Button
+              onClick={() => setVegFilter("veg")}
+              variant={vegFilter === "veg" ? "default" : "outline"}
+              className="flex-1 text-sm"
+              data-testid="filter-veg"
+              style={vegFilter === "veg" ? { backgroundColor: "var(--elegant-gold)", color: "white" } : {}}
+            >
+              Veg
+            </Button>
+            <Button
+              onClick={() => setVegFilter("non-veg")}
+              variant={vegFilter === "non-veg" ? "default" : "outline"}
+              className="flex-1 text-sm"
+              data-testid="filter-non-veg"
+              style={vegFilter === "non-veg" ? { backgroundColor: "var(--elegant-gold)", color: "white" } : {}}
+            >
+              Non-Veg
+            </Button>
+          </div>
+        )}
 
         <div className="relative mb-6">
           <Button
