@@ -304,34 +304,48 @@ export default function CategorySelection() {
         </h1>
 
         {categoryId === "food" && (
-          <div className="mb-6 flex gap-2 justify-center">
-            <Button
-              onClick={() => handleFilterChange("all")}
-              variant={vegFilter === "all" ? "default" : "outline"}
-              className="px-4 text-sm"
-              data-testid="filter-all"
-              style={vegFilter === "all" ? { backgroundColor: "#C9A55C", color: "white", borderColor: "#C9A55C" } : {}}
+          <div className="mb-6 flex justify-end">
+            <div 
+              className="inline-flex rounded-full p-1"
+              style={{ backgroundColor: "rgba(201, 165, 92, 0.15)", border: "2px solid #C9A55C" }}
             >
-              All
-            </Button>
-            <Button
-              onClick={() => handleFilterChange("veg")}
-              variant={vegFilter === "veg" ? "default" : "outline"}
-              className="px-4 text-sm"
-              data-testid="filter-veg"
-              style={vegFilter === "veg" ? { backgroundColor: "#C9A55C", color: "white", borderColor: "#C9A55C" } : {}}
-            >
-              Veg
-            </Button>
-            <Button
-              onClick={() => handleFilterChange("non-veg")}
-              variant={vegFilter === "non-veg" ? "default" : "outline"}
-              className="px-4 text-sm"
-              data-testid="filter-non-veg"
-              style={vegFilter === "non-veg" ? { backgroundColor: "#C9A55C", color: "white", borderColor: "#C9A55C" } : {}}
-            >
-              Non-Veg
-            </Button>
+              <button
+                onClick={() => handleFilterChange("all")}
+                className="px-5 py-2 text-sm font-medium rounded-full transition-all duration-200"
+                data-testid="filter-all"
+                style={
+                  vegFilter === "all"
+                    ? { backgroundColor: "#C9A55C", color: "white" }
+                    : { color: "#C9A55C" }
+                }
+              >
+                All
+              </button>
+              <button
+                onClick={() => handleFilterChange("veg")}
+                className="px-5 py-2 text-sm font-medium rounded-full transition-all duration-200"
+                data-testid="filter-veg"
+                style={
+                  vegFilter === "veg"
+                    ? { backgroundColor: "#C9A55C", color: "white" }
+                    : { color: "#C9A55C" }
+                }
+              >
+                Veg
+              </button>
+              <button
+                onClick={() => handleFilterChange("non-veg")}
+                className="px-5 py-2 text-sm font-medium rounded-full transition-all duration-200"
+                data-testid="filter-non-veg"
+                style={
+                  vegFilter === "non-veg"
+                    ? { backgroundColor: "#C9A55C", color: "white" }
+                    : { color: "#C9A55C" }
+                }
+              >
+                Non-Veg
+              </button>
+            </div>
           </div>
         )}
 
