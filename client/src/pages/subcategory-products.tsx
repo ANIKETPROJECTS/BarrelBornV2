@@ -42,6 +42,10 @@ export default function SubcategoryProducts() {
   const categoryId = params.category || "mocktails";
   const subcategoryId = params.subcategory || "";
 
+  // Get filter from URL params
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const urlFilter = (searchParams.get('filter') || "all") as "all" | "veg" | "non-veg";
+
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
   const currentSubcategory = subcategories.find(s => s.id === subcategoryId);
@@ -50,6 +54,7 @@ export default function SubcategoryProducts() {
   const [isListening, setIsListening] = useState(false);
   const [speechRecognition, setSpeechRecognition] = useState<ISpeechRecognition | null>(null);
   const [voiceSearchSupported, setVoiceSearchSupported] = useState(false);
+  const [vegFilter, setVegFilter] = useState<"all" | "veg" | "non-veg">(urlFilter);
 
   const itemsQuery = useQuery<MenuItem[]>({
     queryKey: ["/api/menu-items", subcategoryId],
@@ -110,26 +115,25 @@ export default function SubcategoryProducts() {
 
   const filteredItems = useMemo(() => {
     const dbCategory = currentSubcategory?.dbCategory;
-    console.log("FILTERING DEBUG:", {
-      dbCategory,
-      totalItems: menuItems.length,
-      filteringBy: dbCategory,
-    });
     
-    // Items are already from the specific MongoDB collection, no filtering needed
-    const filtered = menuItems;
+    let filtered = menuItems;
+    
+    // Apply veg filter
+    if (vegFilter === "veg") {
+      filtered = filtered.filter(item => item.isVeg);
+    } else if (vegFilter === "non-veg") {
+      filtered = filtered.filter(item => !item.isVeg);
+    }
     
     if (searchQuery.trim()) {
-      const searched = filtered.filter(item =>
+      filtered = filtered.filter(item =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.description.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      console.log("SEARCH RESULT:", { searchQuery, searchedCount: searched.length });
-      return searched;
     }
     
     return filtered;
-  }, [menuItems, searchQuery, currentSubcategory]);
+  }, [menuItems, searchQuery, vegFilter]);
 
   const startVoiceSearch = () => {
     if (speechRecognition && voiceSearchSupported) {

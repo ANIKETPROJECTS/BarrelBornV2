@@ -94,12 +94,14 @@ export default function CategorySelection() {
   const params = useParams<{ category: string }>();
   const categoryId = params.category || "mocktails";
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
+  const [vegFilter, setVegFilter] = useState<"all" | "veg" | "non-veg">("all");
 
   const mainCategory = getMainCategory(categoryId);
   const subcategories = mainCategory?.subcategories || [];
 
   const handleSubcategoryClick = (subcategoryId: string) => {
-    setLocation(`/menu/${categoryId}/${subcategoryId}`);
+    const filterParam = vegFilter !== "all" ? `?filter=${vegFilter}` : "";
+    setLocation(`/menu/${categoryId}/${subcategoryId}${filterParam}`);
   };
 
   const handleCategoryClick = (catId: string) => {
@@ -281,6 +283,38 @@ export default function CategorySelection() {
         >
           {mainCategory.displayLabel}
         </h1>
+
+        {categoryId === "food" && (
+          <div className="mb-6 flex gap-2 justify-center">
+            <Button
+              onClick={() => setVegFilter("all")}
+              variant={vegFilter === "all" ? "default" : "outline"}
+              className="px-4 text-sm"
+              data-testid="filter-all"
+              style={vegFilter === "all" ? { backgroundColor: "#C9A55C", color: "white", borderColor: "#C9A55C" } : {}}
+            >
+              All
+            </Button>
+            <Button
+              onClick={() => setVegFilter("veg")}
+              variant={vegFilter === "veg" ? "default" : "outline"}
+              className="px-4 text-sm"
+              data-testid="filter-veg"
+              style={vegFilter === "veg" ? { backgroundColor: "#C9A55C", color: "white", borderColor: "#C9A55C" } : {}}
+            >
+              Veg
+            </Button>
+            <Button
+              onClick={() => setVegFilter("non-veg")}
+              variant={vegFilter === "non-veg" ? "default" : "outline"}
+              className="px-4 text-sm"
+              data-testid="filter-non-veg"
+              style={vegFilter === "non-veg" ? { backgroundColor: "#C9A55C", color: "white", borderColor: "#C9A55C" } : {}}
+            >
+              Non-Veg
+            </Button>
+          </div>
+        )}
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
           {subcategories.map((subcat, index) => (
