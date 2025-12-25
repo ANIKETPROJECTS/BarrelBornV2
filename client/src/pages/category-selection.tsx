@@ -307,7 +307,10 @@ export default function CategorySelection() {
           {categoryId === "food" && (
             <div 
               className="absolute right-0 inline-flex rounded-full p-0.5 items-center gap-0"
-              style={{ backgroundColor: "rgba(201, 165, 92, 0.15)", border: "1px solid #C9A55C" }}
+              style={{
+                backgroundColor: vegFilter === "all" ? "rgba(255, 255, 255, 0.1)" : vegFilter === "veg" ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)",
+                border: `1px solid ${vegFilter === "all" ? "#ffffff" : vegFilter === "veg" ? "#22C55E" : "#EF4444"}`
+              }}
             >
               <button
                 onClick={() => handleFilterChange("all")}
