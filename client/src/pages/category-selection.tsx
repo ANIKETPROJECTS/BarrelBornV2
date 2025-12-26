@@ -144,9 +144,12 @@ export default function CategorySelection() {
     }
     const query = foodSearchQuery.toLowerCase();
     return allMenuItems.filter(item => {
+      // Get category ID in lowercase for matching
+      const itemCategory = item.category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+      
       const isCorrectCategory = categoryId === "food" 
-        ? ["NIBBLES", "TITBITS", "SOUPS", "SALADS", "APPETIZERS", "BURGERS", "PASTAS", "PIZZAS", "MAINS", "DESSERTS"].includes(item.category)
-        : ["BLENDED WHISKY", "SINGLE MALT WHISKY", "GIN", "VODKA", "RUM", "TEQUILA", "BEER", "COCKTAILS", "MOCKTAILS"].includes(item.category);
+        ? ["nibbles", "titbits", "soups", "salads", "starters", "charcoal", "pasta", "pizza", "sliders", "entree", "bao-dimsum", "curries", "biryani", "rice", "dals", "breads", "asian-mains", "thai-bowls", "rice-noodles", "sizzlers", "desserts"].includes(itemCategory)
+        : ["blended-whisky", "blended-scotch-whisky", "american-irish-whiskey", "single-malt-whisky", "vodka", "gin", "rum", "tequila", "cognac-brandy", "liqueurs", "sparkling-wine", "white-wines", "rose-wines", "red-wines", "dessert-wines", "port-wine", "signature-mocktails", "soft-beverages"].includes(itemCategory);
       
       return isCorrectCategory && (
         item.name.toLowerCase().includes(query) || 
