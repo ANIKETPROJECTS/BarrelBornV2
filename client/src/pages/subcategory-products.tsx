@@ -198,92 +198,6 @@ export default function SubcategoryProducts() {
               >
                 {currentSubcategory.displayLabel.toUpperCase()}
               </h1>
-
-              {categoryId === "food" && (
-                <div className="absolute -right-4 flex items-center">
-                  {/* Desktop Toggle */}
-                  <div 
-                    className="hidden sm:inline-flex rounded-full p-0.5 items-center gap-0"
-                    style={{
-                      backgroundColor: vegFilter === "all" ? "rgba(255, 255, 255, 0.1)" : vegFilter === "veg" ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)",
-                      border: `1px solid ${vegFilter === "all" ? "#ffffff" : vegFilter === "veg" ? "#22C55E" : "#EF4444"}`
-                    }}
-                  >
-                    <button
-                      onClick={() => setVegFilter("all")}
-                      className="px-2 py-0.5 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
-                      data-testid="filter-all"
-                      style={
-                        vegFilter === "all"
-                          ? { backgroundColor: "white", color: "black", lineHeight: "1.2" }
-                          : { color: "#C9A55C", lineHeight: "1.2" }
-                      }
-                    >
-                      All
-                    </button>
-                    <button
-                      onClick={() => setVegFilter("veg")}
-                      className="px-2 py-0.5 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
-                      data-testid="filter-veg"
-                      style={
-                        vegFilter === "veg"
-                          ? { backgroundColor: "#22C55E", color: "white", lineHeight: "1.2" }
-                          : { color: "#C9A55C", lineHeight: "1.2" }
-                      }
-                    >
-                      Veg
-                    </button>
-                    <button
-                      onClick={() => setVegFilter("non-veg")}
-                      className="px-2 py-0.5 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
-                      data-testid="filter-non-veg"
-                      style={
-                        vegFilter === "non-veg"
-                          ? { backgroundColor: "#EF4444", color: "white", lineHeight: "1.2" }
-                          : { color: "#C9A55C", lineHeight: "1.2" }
-                      }
-                    >
-                      Non-Veg
-                    </button>
-                  </div>
-
-                  {/* Mobile Dropdown */}
-                  <div className="sm:hidden">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="h-7 px-2 rounded-full border-[#C9A55C] text-[#C9A55C] hover:bg-[#C9A55C]/10 bg-transparent text-[10px]"
-                        >
-                          <span className="capitalize">{vegFilter}</span>
-                          <ChevronDown className="ml-1 h-3 w-3" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="bg-[#1A1A1A] border-[#C9A55C] text-[#C9A55C]">
-                        <DropdownMenuItem 
-                          onClick={() => setVegFilter("all")}
-                          className="focus:bg-[#C9A55C]/10 focus:text-[#C9A55C] text-[11px]"
-                        >
-                          All
-                        </DropdownMenuItem>
-                        <DropdownMenuItem 
-                          onClick={() => setVegFilter("veg")}
-                          className="focus:bg-[#22C55E]/10 focus:text-[#22C55E] text-[11px]"
-                        >
-                          Veg
-                        </DropdownMenuItem>
-                        <DropdownMenuItem 
-                          onClick={() => setVegFilter("non-veg")}
-                          className="focus:bg-[#EF4444]/10 focus:text-[#EF4444] text-[11px]"
-                        >
-                          Non-Veg
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </div>
-              )}
             </div>
 
             <div className="w-9" />
@@ -299,28 +213,115 @@ export default function SubcategoryProducts() {
             placeholder={`Search ${currentSubcategory.displayLabel.toLowerCase()}...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 pr-12 h-11 rounded-full border-2 text-white placeholder:text-white/70 focus-visible:ring-2 focus-visible:ring-[#C9A55C]/50"
+            className="pl-10 pr-24 h-11 rounded-full border-2 text-white placeholder:text-white/70 focus-visible:ring-2 focus-visible:ring-[#C9A55C]/50"
             style={{ 
               borderColor: '#C9A55C', 
               backgroundColor: 'transparent'
             }}
             data-testid="input-search"
           />
-          {voiceSearchSupported && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={isListening ? undefined : startVoiceSearch}
-              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 w-9 hover:bg-transparent"
-              data-testid="button-voice-search"
-            >
-              {isListening ? (
-                <MicOff className="h-4 w-4 text-red-500 animate-pulse" />
-              ) : (
-                <Mic className="h-4 w-4 text-white" />
-              )}
-            </Button>
-          )}
+          <div className="absolute right-1 top-1/2 transform -translate-y-1/2 flex items-center gap-0">
+            {categoryId === "food" && (
+              <div className="flex items-center">
+                {/* Desktop Toggle (Hidden in search bar for desktop, keeping existing logic for consistency) */}
+                <div 
+                  className="hidden sm:inline-flex rounded-full p-0.5 items-center gap-0"
+                  style={{
+                    backgroundColor: vegFilter === "all" ? "rgba(255, 255, 255, 0.1)" : vegFilter === "veg" ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)",
+                    border: `1px solid ${vegFilter === "all" ? "#ffffff" : vegFilter === "veg" ? "#22C55E" : "#EF4444"}`
+                  }}
+                >
+                  <button
+                    onClick={() => setVegFilter("all")}
+                    className="px-2 py-0.5 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
+                    data-testid="filter-all"
+                    style={
+                      vegFilter === "all"
+                        ? { backgroundColor: "white", color: "black", lineHeight: "1.2" }
+                        : { color: "#C9A55C", lineHeight: "1.2" }
+                    }
+                  >
+                    All
+                  </button>
+                  <button
+                    onClick={() => setVegFilter("veg")}
+                    className="px-2 py-0.5 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
+                    data-testid="filter-veg"
+                    style={
+                      vegFilter === "veg"
+                        ? { backgroundColor: "#22C55E", color: "white", lineHeight: "1.2" }
+                        : { color: "#C9A55C", lineHeight: "1.2" }
+                    }
+                  >
+                    Veg
+                  </button>
+                  <button
+                    onClick={() => setVegFilter("non-veg")}
+                    className="px-2 py-0.5 text-xs font-medium rounded-full transition-all duration-200 flex-shrink-0"
+                    data-testid="filter-non-veg"
+                    style={
+                      vegFilter === "non-veg"
+                        ? { backgroundColor: "#EF4444", color: "white", lineHeight: "1.2" }
+                        : { color: "#C9A55C", lineHeight: "1.2" }
+                    }
+                  >
+                    Non-Veg
+                  </button>
+                </div>
+
+                {/* Mobile Dropdown (Now inside search bar) */}
+                <div className="sm:hidden">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="h-9 px-2 hover:bg-transparent text-[#C9A55C] text-[10px] flex items-center gap-1"
+                      >
+                        <span className="capitalize">{vegFilter}</span>
+                        <ChevronDown className="h-3 w-3" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-[#1A1A1A] border-[#C9A55C] text-[#C9A55C]">
+                      <DropdownMenuItem 
+                        onClick={() => setVegFilter("all")}
+                        className="focus:bg-[#C9A55C]/10 focus:text-[#C9A55C] text-[11px]"
+                      >
+                        All
+                      </DropdownMenuItem>
+                      <DropdownMenuItem 
+                        onClick={() => setVegFilter("veg")}
+                        className="focus:bg-[#22C55E]/10 focus:text-[#22C55E] text-[11px]"
+                      >
+                        Veg
+                      </DropdownMenuItem>
+                      <DropdownMenuItem 
+                        onClick={() => setVegFilter("non-veg")}
+                        className="focus:bg-[#EF4444]/10 focus:text-[#EF4444] text-[11px]"
+                      >
+                        Non-Veg
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </div>
+            )}
+            {voiceSearchSupported && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={isListening ? undefined : startVoiceSearch}
+                className="h-9 w-9 hover:bg-transparent"
+                data-testid="button-voice-search"
+              >
+                {isListening ? (
+                  <MicOff className="h-4 w-4 text-red-500 animate-pulse" />
+                ) : (
+                  <Mic className="h-4 w-4 text-white" />
+                )}
+              </Button>
+            )}
+          </div>
         </div>
 
         {isLoading ? (
