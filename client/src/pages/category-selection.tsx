@@ -336,11 +336,15 @@ export default function CategorySelection() {
                     <Phone className="h-5 w-5 text-gray-600" />
                     <div>
                       <p className="font-semibold text-gray-800" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                        Contact Us
+                      </p>
+                      <a 
+                        href="tel:+917208617766"
+                        className="text-sm text-blue-600 hover:underline font-medium" 
+                        style={{ fontFamily: "'Lato', sans-serif" }}
+                      >
                         +91 72086 17766
-                      </p>
-                      <p className="text-sm text-gray-600" style={{ fontFamily: "'Lato', sans-serif" }}>
-                        For reservations & orders
-                      </p>
+                      </a>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
