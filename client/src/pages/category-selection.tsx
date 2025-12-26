@@ -143,10 +143,16 @@ export default function CategorySelection() {
       return [];
     }
     const query = foodSearchQuery.toLowerCase();
-    return allMenuItems.filter(item => 
-      item.name.toLowerCase().includes(query) || 
-      item.description.toLowerCase().includes(query)
-    );
+    return allMenuItems.filter(item => {
+      const isCorrectCategory = categoryId === "food" 
+        ? ["NIBBLES", "TITBITS", "SOUPS", "SALADS", "APPETIZERS", "BURGERS", "PASTAS", "PIZZAS", "MAINS", "DESSERTS"].includes(item.category)
+        : ["BLENDED WHISKY", "SINGLE MALT WHISKY", "GIN", "VODKA", "RUM", "TEQUILA", "BEER", "COCKTAILS", "MOCKTAILS"].includes(item.category);
+      
+      return isCorrectCategory && (
+        item.name.toLowerCase().includes(query) || 
+        item.description.toLowerCase().includes(query)
+      );
+    });
   }, [allMenuItems, foodSearchQuery, categoryId]);
 
   const filteredSubcategories = useMemo(() => {
