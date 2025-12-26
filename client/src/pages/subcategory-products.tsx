@@ -120,13 +120,13 @@ export default function SubcategoryProducts() {
     console.log("DETAILED CATEGORY DEBUG:", {
       categoryId,
       subcategoryId,
-      mainCategory: mainCategory?.name,
+      mainCategory: mainCategory?.displayLabel,
       currentSubcategory: currentSubcategory?.id,
       dbCategory: currentSubcategory?.dbCategory,
       displayLabel: currentSubcategory?.displayLabel,
       menuItemsCount: menuItems.length,
       firstItemCategory: menuItems[0]?.category,
-      allItemCategories: [...new Set(menuItems.map(item => item.category))],
+      allItemCategories: Array.from(new Set(menuItems.map(item => item.category))),
     });
   }, [menuItems, currentSubcategory, categoryId, subcategoryId, mainCategory]);
 
@@ -220,15 +220,14 @@ export default function SubcategoryProducts() {
             }}
             data-testid="input-search"
           />
-          <div className="absolute right-1 top-1/2 transform -translate-y-1/2 flex items-center gap-0">
+            <div className="absolute right-1 top-1/2 transform -translate-y-1/2 flex items-center gap-0">
             {categoryId === "food" && (
               <div className="flex items-center">
                 {/* Desktop Toggle (Hidden in search bar for desktop, keeping existing logic for consistency) */}
                 <div 
                   className="hidden sm:inline-flex rounded-full p-0.5 items-center gap-0"
                   style={{
-                    backgroundColor: vegFilter === "all" ? "rgba(255, 255, 255, 0.1)" : vegFilter === "veg" ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)",
-                    border: `1px solid ${vegFilter === "all" ? "#ffffff" : vegFilter === "veg" ? "#22C55E" : "#EF4444"}`
+                    backgroundColor: vegFilter === "all" ? "rgba(255, 255, 255, 0.1)" : vegFilter === "veg" ? "rgba(34, 197, 94, 0.1)" : "rgba(239, 68, 68, 0.1)"
                   }}
                 >
                   <button
