@@ -135,11 +135,11 @@ export default function CategorySelection() {
 
   const { data: allMenuItems = [], isLoading: isLoadingItems } = useQuery<MenuItem[]>({
     queryKey: ["/api/menu-items"],
-    enabled: categoryId === "food"
+    enabled: categoryId === "food" || categoryId === "bar"
   });
 
   const filteredItems = useMemo(() => {
-    if (categoryId !== "food" || !foodSearchQuery.trim()) {
+    if ((categoryId !== "food" && categoryId !== "bar") || !foodSearchQuery.trim()) {
       return [];
     }
     const query = foodSearchQuery.toLowerCase();
@@ -369,12 +369,12 @@ export default function CategorySelection() {
           {mainCategory.displayLabel}
         </h1>
 
-        {categoryId === "food" && (
+        {(categoryId === "food" || categoryId === "bar") && (
           <div className="relative mb-6">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
               type="text"
-              placeholder="Search food items..."
+              placeholder={`Search ${categoryId} items...`}
               value={foodSearchQuery}
               onChange={(e) => setFoodSearchQuery(e.target.value)}
               className="pl-10 pr-12 h-10 rounded-full border-2 text-white placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-[#C9A55C]/50"
@@ -382,7 +382,7 @@ export default function CategorySelection() {
                 borderColor: '#C9A55C', 
                 backgroundColor: 'transparent'
               }}
-              data-testid="input-food-search"
+              data-testid={`input-${categoryId}-search`}
             />
             {voiceSearchSupported && (
               <Button
@@ -390,7 +390,7 @@ export default function CategorySelection() {
                 size="icon"
                 onClick={isListening ? undefined : startVoiceSearch}
                 className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 w-9 hover:bg-transparent"
-                data-testid="button-food-voice-search"
+                data-testid={`button-${categoryId}-voice-search`}
               >
                 {isListening ? (
                   <MicOff className="h-4 w-4 text-red-500 animate-pulse" />
@@ -403,7 +403,7 @@ export default function CategorySelection() {
         )}
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6">
-          {categoryId === "food" && foodSearchQuery.trim() ? (
+          {(categoryId === "food" || categoryId === "bar") && foodSearchQuery.trim() ? (
             filteredItems.length === 0 ? (
               <div className="col-span-2 flex flex-col items-center justify-center min-h-[200px] text-center">
                 <Search className="h-12 w-12 text-gray-500 mb-4" />
